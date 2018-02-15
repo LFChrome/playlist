@@ -48,8 +48,11 @@ var myPlayList = [
 $( document ).ready(function() {
 	// everything inside this function happens as soon as the page loads!
 	displayList(myPlayList);
+	$('#submit').click(function() {
+		addSong();
+	});
 	$('#clear').click(function() {
-		clearList();
+		clearList(true);	
 	});
 });
 
@@ -72,19 +75,25 @@ function displayList(songsArray){
 }
 
 // clearList removes all the content from the playlist on the page
-function clearList(){
-	myPlayList = [];
+function clearList(boolean){
+	if (boolean){
+		myPlayList = [];
+	}
 	$('#list').html('');
 }
 
 // addSong takes inputs from the input boxes, organizes them into a new song object, and
 //    pushes a new song to the playlist array
 function addSong(){
+	clearList(false);
 	var mySong = {
 		title: $('#title').val(),
 		artist: $('#artist').val(),
 		imageURL: $('#album-image').val(),
 		playURL: $('#play-link').val()
+	};
+	if (mySong.title === '') {
+		
 	}
 	myPlayList.push(mySong);
 	displayList(myPlayList);
