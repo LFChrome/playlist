@@ -43,7 +43,7 @@ var myPlayList = [
 	}
 
 ]
-
+var message = 'Some information is missing, please fill everything and try resubmitting';
 // DOCUMENT READY FUNCTION
 $( document ).ready(function() {
 	// everything inside this function happens as soon as the page loads!
@@ -85,7 +85,6 @@ function clearList(boolean){
 // addSong takes inputs from the input boxes, organizes them into a new song object, and
 //    pushes a new song to the playlist array
 function addSong(){
-	clearList(false);
 	var mySong = {
 		title: $('#title').val(),
 		artist: $('#artist').val(),
@@ -93,10 +92,18 @@ function addSong(){
 		playURL: $('#play-link').val()
 	};
 	if (mySong.title === '') {
-		
+		alert(message);
+	} else if (mySong.artist === '') {
+		alert(message);
+	} else if (mySong.imageURL === '') {
+		alert(message);
+	} else if (mySong.playURL === '') {
+		alert(message);
+	} else {
+		clearList(false);
+		myPlayList.push(mySong);
+		displayList(myPlayList);	
 	}
-	myPlayList.push(mySong);
-	displayList(myPlayList);
 }
 
 // ----------------------------------------------------------------------------
